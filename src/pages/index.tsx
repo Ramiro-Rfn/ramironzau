@@ -1,12 +1,36 @@
 import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Card } from "../components/Card";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { createClient } from "../services/prismic";
 
+type Project = {
+  id: string,
+  image: string,
+  title: string,
+  description: string,
+  stack: string,
+  codeLink: string,
+  previewLink: string
+}
 
-export default function Home() {
+type Skills = {
+  id: string,
+  icon: string,
+  skillName: string,
+  skillStatus: number
+}
+
+interface HomeProps {
+  projects: Project[]
+  skills: Skills[]
+}
+
+export default function Home({ projects, skills }: HomeProps) {
+
   return (
     <>
       <Head>Home | Ramiro Nzau </Head>
@@ -103,14 +127,18 @@ export default function Home() {
               <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
               <Box display='grid' rowGap='9' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
-                {[1,2,3,4,5,6,7,8,9,10].map((_, index)=>{
+                {skills.map((skill)=>{
                   return (
-                    <Flex key={index} align='center' direction='column'>
-                      <CircularProgress size='120px'  value={40} color='pink.500' >
-                        <CircularProgressLabel color='gray.100'>40%</CircularProgressLabel>
+                    <Flex key={skill.id} align='center' direction='column'>
+                      <CircularProgress size='120px'  value={skill.skillStatus} color='pink.500' >
+                        <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
                       </CircularProgress>
 
-                      <Image mt='4' src="images/logos_bootstrap.svg" w={16} h={16}/>
+                      <Flex mt='4' align='center'>
+                        <Image  src={skill.icon} width={8}/>
+                        <Text ml='2' color='gray.50'>{skill.skillName}</Text>
+                      </Flex>
+
 
                     </Flex>
                   )
@@ -122,9 +150,9 @@ export default function Home() {
               <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Projectos</Text>
 
               <Box display='grid' gap='8' gridTemplateColumns='1fr 1fr 1fr'>
-                {[1,2,3,4,5,6].map((_, index)=>{
+                {projects.map((project)=>{
                   return (
-                    <Card/>
+                    <Card key={project.id} data={project}/>
                   )
                 })}
               </Box>
@@ -142,4 +170,43 @@ export default function Home() {
       <Footer/>
     </>
   )
+}
+
+
+export const getStaticProps: GetStaticProps = async ({ previewData }) => {
+  const client = createClient({ previewData })
+  
+  const response = await client.getAllByType('projects');
+
+  const projects = response?.map((data)=>{
+    return {
+      id: data.id,
+      image: data.data.image.url,
+      title: data.data.title,
+      description: data.data.description,
+      stack: data.data.stack,
+      codeLink: data.data.codelink.url,
+      previewLink: data.data.previewlink.url
+
+    }
+  })
+
+  const skillsResponse = await client.getAllByType('skills');
+  
+  const skills = skillsResponse?.map((data)=>{
+    return {
+      id: data.id,
+      icon: data.data.icon.url,
+      skillName: data.data.skillname,
+      skillStatus: data.data.skillstatus
+    }
+  })
+
+  console.log(projects, skills)
+  return {
+    props: {
+      projects,
+      skills
+    },
+  }
 }
