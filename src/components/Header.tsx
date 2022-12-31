@@ -5,7 +5,7 @@ export function Header() {
         <Flex w='100%' as='header'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%' margin='0 auto' py='8'>
                 <Text 
-                    bgGradient='linear(to-l, #7928CA, #FF0080)' 
+                    bgGradient='linear(to-r, #00C0FD, #E70FAA)' 
                     bgClip='text' 
                     fontSize='3xl'
                 >
@@ -19,7 +19,7 @@ export function Header() {
                                 color='gray.100' 
                                 fontSize='1.25rem' 
                                 fontWeight='500'
-                                _hover={{bgClip:'text',  bgGradient: 'linear(to-l, #7928CA, #FF0080)' }}
+                                _hover={{bgClip:'text',  bgGradient: 'linear(to-r, #00C0FD, #E70FAA)' }}
                             >Sobre</Link>
                         </Box>
 
@@ -28,7 +28,7 @@ export function Header() {
                                 color='gray.100' 
                                 fontSize='1.25rem' 
                                 fontWeight='500'
-                                _hover={{bgClip:'text',  bgGradient: 'linear(to-l, #7928CA, #FF0080)' }}
+                                _hover={{bgClip:'text',  bgGradient: 'linear(to-r, #00C0FD, #E70FAA)' }}
                             >Skills</Link>
                         </Box>
 
@@ -37,7 +37,7 @@ export function Header() {
                                 color='gray.100' 
                                 fontSize='1.25rem' 
                                 fontWeight='500'
-                                _hover={{bgClip:'text',  bgGradient: 'linear(to-l, #7928CA, #FF0080)' }}
+                                _hover={{bgClip:'text',  bgGradient: 'linear(to-r, #00C0FD, #E70FAA)' }}
                             >Trabalhos</Link>
                         </Box>
 
@@ -46,7 +46,7 @@ export function Header() {
                                 color='gray.100' 
                                 fontSize='1.25rem' 
                                 fontWeight='500'
-                                _hover={{bgClip:'text',  bgGradient: 'linear(to-l, #7928CA, #FF0080)' }}
+                                _hover={{bgClip:'text',  bgGradient: 'linear(to-r, #00C0FD, #E70FAA)' }}
                             >Contacto</Link>
                         </Box>
                     </Stack>

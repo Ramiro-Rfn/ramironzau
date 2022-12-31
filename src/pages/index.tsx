@@ -1,6 +1,7 @@
 import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import { Card } from "../components/Card";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 
@@ -18,7 +19,7 @@ export default function Home() {
               <Text as='h1' fontSize='3.5rem' color='gray.50'>
                 Hi 👋, {`\n`}
                 My name is {'\n'}
-                <Text bgGradient='linear(to-l, #7928CA, #FF0080)' bgClip='text'>Ramiro Francisco Nzau</Text>
+                <Text bgGradient='linear(to-r, #00C0FD, #E70FAA)' bgClip='text'>Ramiro Francisco Nzau</Text>
               </Text>
 
 
@@ -28,7 +29,7 @@ export default function Home() {
             </Flex>
 
             <Flex >
-              <Flex w={349} h={349} p='2' overflow='hidden' bgGradient='linear(to-l, #7928CA, #FF0080)' borderRadius='50%'>
+              <Flex w={349} h={349} p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
                 <Image width='100%' height='100%' borderRadius='50%' src="images/ramiro.png" alt="" />
               </Flex>
             </Flex>
@@ -69,6 +70,8 @@ export default function Home() {
           </Box>
         </Box>    
       </Flex>
+
+      <Footer/>
     </>
   )
 }
