@@ -3,13 +3,13 @@ import { FiFacebook, FiGithub, FiLinkedin } from 'react-icons/fi';
 export function Header() {
     return (
         <Flex w='100%' as='header'>
-            <Flex maxW={1190} align='center' justify='space-between' w='100%' margin='0 auto' p='8'>
+            <Flex maxW={1190} align='center' justify='space-between' w='100%' margin='0 auto' py='8'>
                 <Text 
                     bgGradient='linear(to-l, #7928CA, #FF0080)' 
                     bgClip='text' 
                     fontSize='3xl'
                 >
-                    RFN
+                    {`<RFN/>`}
                 </Text>
 
                 <Flex as='nav'>
