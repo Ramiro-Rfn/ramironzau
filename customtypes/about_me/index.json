@@ -1,0 +1,17 @@
+{
+  "id": "about_me",
+  "label": "about me",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "aboutme": {
+        "type": "Text",
+        "config": {
+          "label": "aboutMe",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,30 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for about me documents */
+interface AboutMeDocumentData {
+    /**
+     * aboutMe field in *about me*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.aboutme
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    aboutme: prismicT.KeyTextField;
+}
+/**
+ * about me document from Prismic
+ *
+ * - **API ID**: `about_me`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutMeDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<AboutMeDocumentData>, "about_me", Lang>;
 /** Content for Projects documents */
 interface ProjectsDocumentData {
     /**
@@ -131,12 +155,12 @@ interface SkillsDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type SkillsDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<SkillsDocumentData>, "skills", Lang>;
-export type AllDocumentTypes = ProjectsDocument | SkillsDocument;
+export type AllDocumentTypes = AboutMeDocument | ProjectsDocument | SkillsDocument;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { ProjectsDocumentData, ProjectsDocument, SkillsDocumentData, SkillsDocument, AllDocumentTypes };
+        export type { AboutMeDocumentData, AboutMeDocument, ProjectsDocumentData, ProjectsDocument, SkillsDocumentData, SkillsDocument, AllDocumentTypes };
     }
 }

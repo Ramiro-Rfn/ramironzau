@@ -25,11 +25,12 @@ type Skills = {
 }
 
 interface HomeProps {
-  projects: Project[]
-  skills: Skills[]
+  projects: Project[];
+  skills: Skills[];
+  aboutMe: string;
 }
 
-export default function Home({ projects, skills }: HomeProps) {
+export default function Home({ aboutMe, projects, skills }: HomeProps) {
 
   return (
     <>
@@ -63,15 +64,14 @@ export default function Home({ projects, skills }: HomeProps) {
           </Flex>
 
           <Box maxW={1190} w='100%'   margin='8rem auto 0'>
-              <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Sobre</Text>
+              <Text as='h2' textAlign='center' mb='1rem' fontSize='3rem' color='gray.50'>Sobre</Text>
+              <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Conheça um pouco mais sobre mim.</Text>
 
               <Flex>
                 <Flex maxW={617} flexDir='column' >
                   <Text fontSize='1rem' color='gray.50' mb='4'>Sobre Me</Text>
-                  <Text fontSize='1.5rem' color='gray.100' fontWeight='400'>An inquisitive Computer Science 
-                    Engineering student, skilled in leadership, 
-                    seeking to leverage solid development skills with focus on collaboration, 
-                    communication and passion.
+                  <Text fontSize='1.5rem' color='gray.100' fontWeight='400'>
+                    {aboutMe}
                   </Text>
                 </Flex>
 
@@ -122,11 +122,11 @@ export default function Home({ projects, skills }: HomeProps) {
               </Flex>
           </Box>
 
-          <Box maxW={990} w='100%'   margin='8rem auto 0'>
+          <Box maxW={1190} w='100%'   margin='8rem auto 0'>
               <Text as='h2' textAlign='center' mb='1rem' fontSize='3rem' color='gray.50'>Skills</Text>
               <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
-              <Box display='grid' rowGap='9' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
+              <Box display='grid' rowGap='3rem' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
                 {skills.map((skill)=>{
                   return (
                     <Flex key={skill.id} align='center' direction='column'>
@@ -148,6 +148,7 @@ export default function Home({ projects, skills }: HomeProps) {
 
           <Box maxW={990} w='100%'   margin='8rem auto 8rem'>
               <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Projectos</Text>
+              <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Coisa que tenho construido ultimamente</Text>
 
               <Box display='grid' gap='8' gridTemplateColumns='1fr 1fr 1fr'>
                 {projects.map((project)=>{
@@ -202,11 +203,15 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
     }
   })
 
-  console.log(projects, skills)
+  const aboutMeResult = await client.getSingle('about_me');
+  
+  const aboutMe = aboutMeResult.data.aboutme;
+
   return {
     props: {
       projects,
-      skills
+      skills,
+      aboutMe
     },
   }
 }
