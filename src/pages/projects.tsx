@@ -17,7 +17,7 @@ type Project = {
     previewLink: string
 }
 
-interface AboutProps {
+interface ProjectsProps {
   aboutMe: {
     aboutme: string,
     socialmedia: {
@@ -33,7 +33,7 @@ interface AboutProps {
   projects: Project[];
 }
 
-export default function About({ aboutMe, projects }: AboutProps) {
+export default function Projects({ aboutMe, projects }: ProjectsProps) {
   
   return (
     <>
