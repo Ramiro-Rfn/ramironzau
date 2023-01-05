@@ -49,7 +49,7 @@ export function Header({ socialMedia }: HomeProps) {
                         </Box>
 
                         <Box>
-                            <Link href='#projects'>
+                            <Link href='/projects'>
                                 <ChakraLink 
                                     color='gray.100' 
                                     fontSize='1.25rem' 
