@@ -17,35 +17,34 @@ interface CardProps {
 
 export function Card({ data }: CardProps) {
     return (
-        <ChakraCard maxW='sm' bg='gray.700'>
-            <CardBody p='0'>
+        <ChakraCard maxW={370} h='30rem' bg='gray.700'>
+            <CardBody p='0' h='100%'>
                 <Image
                     src={data.image}
                     alt=''
                     borderRadius='8px 8px 0 0'
                 />
-                <Stack p='4' spacing='3'>
-                    <Heading fontWeight='500' fontSize='1.75rem' color='gray.50' size='md'>{data.title}</Heading>
-                    <Text noOfLines={5} fontSize='1.125rem' color='gray.100'>{data.description}</Text>
-                    <Text noOfLines={1} color='gray.50' fontSize='1rem'>Stack: <Text as='span' color='gray.100'>{data.stack}.</Text>
-                    </Text>
-
+                <Flex p='4' justify='space-between' h='57%' flex='1' flexDir='column'>
+                    <Stack spacing='3'>
+                        <Heading fontWeight='500' fontSize='1.75rem' color='gray.50' size='md'>{data.title}</Heading>
+                        <Text noOfLines={4} fontSize='1.125rem' color='gray.100'>{data.description}</Text>
+                        <Text noOfLines={1} color='gray.50' fontSize='1rem'>Stack: <Text as='span' color='gray.100'>{data.stack}.</Text>
+                        </Text>
+                    </Stack>
                     <Flex align='center' mt='6' justify='space-between'>
-                    <Flex align='center'>
-                        <Icon as={FiLink} color='white'/>
+                        <Flex align='center'>
+                            <Icon as={FiLink} color='white'/>
 
-                        <Link ml='2' color='white' href={data.previewLink}>Preview</Link>
+                            <Link ml='2' color='white' href={data.previewLink? data.previewLink: ''}>Preview</Link>
+                        </Flex>
+
+                        <Flex align='center'>
+                            <Icon as={FiGithub} color='white'/>
+
+                            <Link ml='2' color='white' href={data.codeLink}>Ver código</Link>
+                        </Flex>
                     </Flex>
-
-                    <Flex align='center'>
-                        <Icon as={FiGithub} color='white'/>
-
-                        <Link ml='2' color='white' href={data.codeLink}>Ver código</Link>
-                    </Flex>
-                    </Flex>
-                </Stack>
-
-            
+                </Flex>
             </CardBody>
         </ChakraCard>
     )   

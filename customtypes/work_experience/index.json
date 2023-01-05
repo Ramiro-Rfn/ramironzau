@@ -1,0 +1,45 @@
+{
+  "id": "work_experience",
+  "label": "Work Experience",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "role": {
+        "type": "Text",
+        "config": {
+          "label": "role",
+          "placeholder": ""
+        }
+      },
+      "organization": {
+        "type": "Text",
+        "config": {
+          "label": "organization",
+          "placeholder": ""
+        }
+      },
+      "start": {
+        "type": "Date",
+        "config": {
+          "label": "start",
+          "placeholder": ""
+        }
+      },
+      "end": {
+        "type": "Date",
+        "config": {
+          "label": "end",
+          "placeholder": ""
+        }
+      },
+      "type": {
+        "type": "Text",
+        "config": {
+          "label": "type",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

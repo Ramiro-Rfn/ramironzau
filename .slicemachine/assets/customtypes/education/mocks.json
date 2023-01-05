@@ -1,0 +1,22 @@
+{
+  "course": {
+    "__TYPE__": "FieldContent",
+    "value": "get",
+    "type": "Text"
+  },
+  "school": {
+    "__TYPE__": "FieldContent",
+    "value": "whale",
+    "type": "Text"
+  },
+  "start": {
+    "__TYPE__": "FieldContent",
+    "type": "Date",
+    "value": "2014-12-11"
+  },
+  "end": {
+    "__TYPE__": "FieldContent",
+    "type": "Date",
+    "value": "2016-11-01"
+  }
+}

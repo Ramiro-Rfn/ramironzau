@@ -1,0 +1,27 @@
+{
+  "role": {
+    "__TYPE__": "FieldContent",
+    "value": "law",
+    "type": "Text"
+  },
+  "organization": {
+    "__TYPE__": "FieldContent",
+    "value": "larger",
+    "type": "Text"
+  },
+  "start": {
+    "__TYPE__": "FieldContent",
+    "type": "Date",
+    "value": "2021-04-27"
+  },
+  "end": {
+    "__TYPE__": "FieldContent",
+    "type": "Date",
+    "value": "2013-04-28"
+  },
+  "type": {
+    "__TYPE__": "FieldContent",
+    "value": "yesterday",
+    "type": "Text"
+  }
+}

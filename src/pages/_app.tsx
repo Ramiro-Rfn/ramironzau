@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { repositoryName } from '../services/prismic';
 import { theme } from '../styles/theme';
 
-
 export default function App({ Component, pageProps }: AppProps) {
 
   return  (

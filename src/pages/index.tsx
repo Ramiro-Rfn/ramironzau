@@ -1,6 +1,11 @@
 import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+
 import { Card } from "../components/Card";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
@@ -27,17 +32,34 @@ type Skills = {
 interface HomeProps {
   projects: Project[];
   skills: Skills[];
-  aboutMe: string;
+  aboutMe: {
+    aboutme: string,
+    socialmedia: {
+      facebook: string,
+      linkedIn: string,
+      github: string,
+    },
+    phonenumber: string,
+    whatsappnumber: string,
+    email: string
+  }
 }
 
 export default function Home({ aboutMe, projects, skills }: HomeProps) {
+  const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
 
   return (
     <>
       <Head>Home | Ramiro Nzau </Head>
       
       <Flex w='100%' direction='column'>
-        <Header/>
+        <Header socialMedia={aboutMe.socialmedia}/>
 
         <Box w='100%'>
           <Flex maxW={1190} align='center' justify='space-between' pt='8rem' w='100%'  margin='0 auto'>
@@ -59,74 +81,16 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
                 <Image width='100%' height='100%' borderRadius='50%' src="images/ramiro.png" alt="" />
               </Flex>
             </Flex>
-
             
           </Flex>
 
-          <Box maxW={1190} w='100%'   margin='8rem auto 0'>
-              <Text as='h2' textAlign='center' mb='1rem' fontSize='3rem' color='gray.50'>Sobre</Text>
-              <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Conheça um pouco mais sobre mim.</Text>
 
-              <Flex>
-                <Flex maxW={617} flexDir='column' >
-                  <Text fontSize='1rem' color='gray.50' mb='4'>Sobre Me</Text>
-                  <Text fontSize='1.5rem' color='gray.100' fontWeight='400'>
-                    {aboutMe}
-                  </Text>
-                </Flex>
-
-                <Flex flex='1' flexDir='column' mt='4rem' ml='4rem'>
-                  <Box mb='8'>
-                    <Text fontSize='1rem' color='gray.50' mb='4'>Experiência</Text>
-                    
-                    <Flex>
-                      <Flex w='100%' flexDir='column' borderBottom='1px solid gray' py='2'>
-                        <Flex align='center' justify='space-between'>
-                          <Text fontSize='1.25rem' color='gray.50' mb='2'>Junior Front-end developer</Text>
-                          
-                          <Text 
-                            as='span' p='2' 
-                            borderRadius='full'  
-                            fontSize='0.6rem' 
-                            bg='pink.200' 
-                            color='pink.500'
-                          >
-                            Remoto
-                          </Text>
-                        </Flex>
-
-                        <Flex align='center' justify='space-between'>
-                          <Text color='gray.100'>Click (Start Brasileira)</Text>
-                          <Text color='gray.100'>Dez 2021 - Mar 2022</Text>
-                        </Flex>
-                      </Flex>
-                    </Flex>
-                  </Box>
-
-                  <Box>
-                    <Text fontSize='1rem' color='gray.50' mb='4'>Formação</Text>
-                    
-                    <Flex>
-                      <Flex w='100%' flexDir='column' borderBottom='1px solid gray' py='2'>
-                        <Flex align='center' justify='space-between'>
-                          <Text fontSize='1.25rem' color='gray.50' mb='2'>Engenharia Informática de Gestão</Text>
-                        </Flex>
-
-                        <Flex align='center' justify='space-between'>
-                          <Text color='gray.100'>ISP Jeans Piaget</Text>
-                        </Flex>
-                      </Flex>
-                    </Flex>
-                  </Box>
-                </Flex>
-              </Flex>
-          </Box>
-
-          <Box maxW={1190} w='100%'   margin='8rem auto 0'>
+          <Box maxW={1190} w='100%'   margin='8rem auto 0' id="skills">
               <Text as='h2' textAlign='center' mb='1rem' fontSize='3rem' color='gray.50'>Skills</Text>
               <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
               <Box display='grid' rowGap='3rem' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
+                
                 {skills.map((skill)=>{
                   return (
                     <Flex key={skill.id} align='center' direction='column'>
@@ -146,20 +110,20 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
               </Box>
           </Box>
 
-          <Box maxW={990} w='100%'   margin='8rem auto 8rem'>
+          <Box maxW={1190} w='100%'   margin='8rem auto 8rem' id="projects">
               <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Projectos</Text>
               <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Coisa que tenho construido ultimamente</Text>
 
-              <Box display='grid' gap='8' gridTemplateColumns='1fr 1fr 1fr'>
+              <Slider {...settings}>
                 {projects.map((project)=>{
                   return (
                     <Card key={project.id} data={project}/>
                   )
                 })}
-              </Box>
+              </Slider>
           </Box>
 
-          <Box py='4rem' maxW={990} margin='0 auto'>
+          <Box py='4rem' maxW={990} margin='0 auto' id="contact">
             <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Contacto</Text>
 
             <ContactForm/>
@@ -187,7 +151,7 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
       description: data.data.description,
       stack: data.data.stack,
       codeLink: data.data.codelink.url,
-      previewLink: data.data.previewlink.url
+      previewLink: data.data.previewlink.url? data.data.previewlink.url: '' 
 
     }
   })
@@ -205,7 +169,19 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
 
   const aboutMeResult = await client.getSingle('about_me');
   
-  const aboutMe = aboutMeResult.data.aboutme;
+  const aboutMe = {
+    aboutme: aboutMeResult.data.aboutme,
+    socialmedia: {
+      facebook: aboutMeResult.data.socialmedia[0].facebook.url,
+      linkedIn: aboutMeResult.data.socialmedia[0].linkedin.url,
+      github: aboutMeResult.data.socialmedia[0].github.url,
+    },
+    phonenumber: aboutMeResult.data.phonenumber,
+    whatsappnumber: aboutMeResult.data.whatsappnumber,
+    email: aboutMeResult.data.email
+  }
+
+  console.log(aboutMe)
 
   return {
     props: {

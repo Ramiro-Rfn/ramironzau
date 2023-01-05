@@ -19,6 +19,86 @@ interface AboutMeDocumentData {
      *
      */
     aboutme: prismicT.KeyTextField;
+    /**
+     * socialMedia field in *about me*
+     *
+     * - **Field Type**: Group
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.socialmedia[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/group
+     *
+     */
+    socialmedia: prismicT.GroupField<Simplify<AboutMeDocumentDataSocialmediaItem>>;
+    /**
+     * phoneNumber field in *about me*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.phonenumber
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    phonenumber: prismicT.KeyTextField;
+    /**
+     * whatsAppNumber field in *about me*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.whatsappnumber
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    whatsappnumber: prismicT.KeyTextField;
+    /**
+     * Email field in *about me*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.email
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    email: prismicT.KeyTextField;
+}
+/**
+ * Item in about me → socialMedia
+ *
+ */
+export interface AboutMeDocumentDataSocialmediaItem {
+    /**
+     * facebook field in *about me → socialMedia*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.socialmedia[].facebook
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    facebook: prismicT.LinkField;
+    /**
+     * linkedIn field in *about me → socialMedia*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.socialmedia[].linkedin
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    linkedin: prismicT.LinkField;
+    /**
+     * Github field in *about me → socialMedia*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.socialmedia[].github
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    github: prismicT.LinkField;
 }
 /**
  * about me document from Prismic
@@ -30,6 +110,63 @@ interface AboutMeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type AboutMeDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<AboutMeDocumentData>, "about_me", Lang>;
+/** Content for Education documents */
+interface EducationDocumentData {
+    /**
+     * course field in *Education*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: education.course
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    course: prismicT.KeyTextField;
+    /**
+     * school field in *Education*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: education.school
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    school: prismicT.KeyTextField;
+    /**
+     * start field in *Education*
+     *
+     * - **Field Type**: Date
+     * - **Placeholder**: *None*
+     * - **API ID Path**: education.start
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/date
+     *
+     */
+    start: prismicT.DateField;
+    /**
+     * end field in *Education*
+     *
+     * - **Field Type**: Date
+     * - **Placeholder**: *None*
+     * - **API ID Path**: education.end
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/date
+     *
+     */
+    end: prismicT.DateField;
+}
+/**
+ * Education document from Prismic
+ *
+ * - **API ID**: `education`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EducationDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<EducationDocumentData>, "education", Lang>;
 /** Content for Projects documents */
 interface ProjectsDocumentData {
     /**
@@ -155,12 +292,80 @@ interface SkillsDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type SkillsDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<SkillsDocumentData>, "skills", Lang>;
-export type AllDocumentTypes = AboutMeDocument | ProjectsDocument | SkillsDocument;
+/** Content for Work Experience documents */
+interface WorkExperienceDocumentData {
+    /**
+     * role field in *Work Experience*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: work_experience.role
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    role: prismicT.KeyTextField;
+    /**
+     * organization field in *Work Experience*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: work_experience.organization
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    organization: prismicT.KeyTextField;
+    /**
+     * start field in *Work Experience*
+     *
+     * - **Field Type**: Date
+     * - **Placeholder**: *None*
+     * - **API ID Path**: work_experience.start
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/date
+     *
+     */
+    start: prismicT.DateField;
+    /**
+     * end field in *Work Experience*
+     *
+     * - **Field Type**: Date
+     * - **Placeholder**: *None*
+     * - **API ID Path**: work_experience.end
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/date
+     *
+     */
+    end: prismicT.DateField;
+    /**
+     * type field in *Work Experience*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: work_experience.type
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    type: prismicT.KeyTextField;
+}
+/**
+ * Work Experience document from Prismic
+ *
+ * - **API ID**: `work_experience`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WorkExperienceDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<WorkExperienceDocumentData>, "work_experience", Lang>;
+export type AllDocumentTypes = AboutMeDocument | EducationDocument | ProjectsDocument | SkillsDocument | WorkExperienceDocument;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { AboutMeDocumentData, AboutMeDocument, ProjectsDocumentData, ProjectsDocument, SkillsDocumentData, SkillsDocument, AllDocumentTypes };
+        export type { AboutMeDocumentData, AboutMeDocumentDataSocialmediaItem, AboutMeDocument, EducationDocumentData, EducationDocument, ProjectsDocumentData, ProjectsDocument, SkillsDocumentData, SkillsDocument, WorkExperienceDocumentData, WorkExperienceDocument, AllDocumentTypes };
     }
 }

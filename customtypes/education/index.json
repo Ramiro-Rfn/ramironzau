@@ -1,0 +1,38 @@
+{
+  "id": "education",
+  "label": "Education",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "course": {
+        "type": "Text",
+        "config": {
+          "label": "course",
+          "placeholder": ""
+        }
+      },
+      "school": {
+        "type": "Text",
+        "config": {
+          "label": "school",
+          "placeholder": ""
+        }
+      },
+      "start": {
+        "type": "Date",
+        "config": {
+          "label": "start",
+          "placeholder": ""
+        }
+      },
+      "end": {
+        "type": "Date",
+        "config": {
+          "label": "end",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

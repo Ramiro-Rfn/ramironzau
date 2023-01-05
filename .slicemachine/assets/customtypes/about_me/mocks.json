@@ -1,7 +1,62 @@
 {
   "aboutme": {
     "__TYPE__": "FieldContent",
-    "value": "solar",
+    "value": "angry",
+    "type": "Text"
+  },
+  "socialmedia": {
+    "__TYPE__": "GroupContentType",
+    "value": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "facebook",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://google.com"
+              }
+            }
+          ],
+          [
+            "linkedin",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://twitter.com"
+              }
+            }
+          ],
+          [
+            "github",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://twitter.com"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "phonenumber": {
+    "__TYPE__": "FieldContent",
+    "value": "it",
+    "type": "Text"
+  },
+  "whatsappnumber": {
+    "__TYPE__": "FieldContent",
+    "value": "drawn",
+    "type": "Text"
+  },
+  "email": {
+    "__TYPE__": "FieldContent",
+    "value": "opposite",
     "type": "Text"
   }
 }

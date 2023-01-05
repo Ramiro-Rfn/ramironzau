@@ -11,6 +11,59 @@
           "label": "aboutMe",
           "placeholder": ""
         }
+      },
+      "socialmedia": {
+        "type": "Group",
+        "config": {
+          "label": "socialMedia",
+          "fields": {
+            "facebook": {
+              "type": "Link",
+              "config": {
+                "label": "facebook",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "linkedin": {
+              "type": "Link",
+              "config": {
+                "label": "linkedIn",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "github": {
+              "type": "Link",
+              "config": {
+                "label": "Github",
+                "placeholder": "",
+                "select": null
+              }
+            }
+          }
+        }
+      },
+      "phonenumber": {
+        "type": "Text",
+        "config": {
+          "label": "phoneNumber",
+          "placeholder": ""
+        }
+      },
+      "whatsappnumber": {
+        "type": "Text",
+        "config": {
+          "label": "whatsAppNumber",
+          "placeholder": ""
+        }
+      },
+      "email": {
+        "type": "Text",
+        "config": {
+          "label": "Email",
+          "placeholder": ""
+        }
       }
     }
   }
