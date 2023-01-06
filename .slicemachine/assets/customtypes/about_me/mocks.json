@@ -1,7 +1,7 @@
 {
   "aboutme": {
     "__TYPE__": "FieldContent",
-    "value": "angry",
+    "value": "beyond",
     "type": "Text"
   },
   "socialmedia": {
@@ -36,7 +36,7 @@
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
-                "url": "http://twitter.com"
+                "url": "https://slicemachine.dev"
               }
             }
           ]
@@ -46,17 +46,43 @@
   },
   "phonenumber": {
     "__TYPE__": "FieldContent",
-    "value": "it",
+    "value": "final",
     "type": "Text"
   },
   "whatsappnumber": {
     "__TYPE__": "FieldContent",
-    "value": "drawn",
+    "value": "city",
     "type": "Text"
   },
   "email": {
     "__TYPE__": "FieldContent",
-    "value": "opposite",
+    "value": "stand",
     "type": "Text"
+  },
+  "name": {
+    "__TYPE__": "FieldContent",
+    "value": "zipper",
+    "type": "Text"
+  },
+  "avatar": {
+    "__TYPE__": "ImageContent",
+    "origin": {
+      "id": "main",
+      "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+      "width": 4000,
+      "height": 4000
+    },
+    "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+    "width": 4000,
+    "height": 4000,
+    "edit": {
+      "zoom": 1,
+      "crop": {
+        "x": 0,
+        "y": 0
+      },
+      "background": "transparent"
+    },
+    "thumbnails": {}
   }
 }

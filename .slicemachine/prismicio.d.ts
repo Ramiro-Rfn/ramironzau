@@ -63,6 +63,28 @@ interface AboutMeDocumentData {
      *
      */
     email: prismicT.KeyTextField;
+    /**
+     * Name field in *about me*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.name
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    name: prismicT.KeyTextField;
+    /**
+     * avatar field in *about me*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about_me.avatar
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    avatar: prismicT.ImageField<never>;
 }
 /**
  * Item in about me → socialMedia

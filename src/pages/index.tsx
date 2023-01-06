@@ -1,4 +1,4 @@
-import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Slider from "react-slick";
@@ -10,6 +10,7 @@ import { Card } from "../components/Card";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { settings } from "../config/react-slick";
 import { createClient } from "../services/prismic";
 
 type Project = {
@@ -46,13 +47,13 @@ interface HomeProps {
 }
 
 export default function Home({ aboutMe, projects, skills }: HomeProps) {
-  const settings = {
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-  };
+  const isWideVersion = useBreakpointValue({
+    base: true,
+    sm: true,
+    md: false,
+    lg: false,
+    xl: false
+  })
 
   return (
     <>
@@ -62,57 +63,85 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
         <Header socialMedia={aboutMe.socialmedia}/>
 
         <Box w='100%'>
-          <Flex maxW={1190} align='center' justify='space-between' pt='8rem' w='100%'  margin='0 auto'>
+          <Flex maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '0']} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
             <Flex maxW={639} direction='column'>
-              <Text as='h1' fontSize='3.5rem' color='gray.50'>
-                Hi 👋, {`\n`}
-                My name is {'\n'}
-                <Text bgGradient='linear(to-r, #00C0FD, #E70FAA)' bgClip='text'>Ramiro Francisco Nzau</Text>
+              <Text as='h1' fontSize={['2.5rem', '2rem', '3rem', '3.5rem']} color='gray.50'>
+                Hi 👋,
+                <Text>My name is</Text>
+                <Text bgGradient='linear(to-r, #00C0FD, #E70FAA)' bgClip='text'>Ramiro Nzau</Text>
               </Text>
 
 
-              <Text color='gray.100' fontSize='2rem'>
+              <Text color='gray.100' fontSize={['1rem', '1rem', '1.5rem','2rem']}>
                 Desenvolvedor front-end junior
               </Text>
             </Flex>
 
-            <Flex >
-              <Flex w={349} h={349} p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
-                <Image width='100%' height='100%' borderRadius='50%' src="images/ramiro.png" alt="" />
+            {!isWideVersion && (
+              <Flex >
+                <Flex w={[300, 200, 280,349]} h={[200, 200, 280,349]} p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
+                  <Image width='100%' height='100%' borderRadius='50%' src="images/ramiro.png" alt="" />
+                </Flex>
               </Flex>
-            </Flex>
-            
+            )}
+
           </Flex>
 
 
-          <Box maxW={1190} w='100%'   margin='8rem auto 0' id="skills">
-              <Text as='h2' textAlign='center' mb='1rem' fontSize='3rem' color='gray.50'>Skills</Text>
-              <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
+          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '0']}  margin={['4rem 0 0','8rem auto 0']} id="skills">
+              <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Skills</Text>
+              <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
-              <Box display='grid' rowGap='3rem' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
-                
-                {skills.map((skill)=>{
-                  return (
-                    <Flex key={skill.id} align='center' direction='column'>
-                      <CircularProgress size='120px'  value={skill.skillStatus} color='pink.500' >
-                        <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
-                      </CircularProgress>
+                {!isWideVersion?(
+                  <Box display='grid' rowGap='3rem' gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
+                    {skills.map((skill)=>{
+                      return (
+                          <Flex key={skill.id} align='center' direction='column'>
+                            <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                              <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
+                            </CircularProgress>
 
-                      <Flex mt='4' align='center'>
-                        <Image  src={skill.icon} width={8}/>
-                        <Text ml='2' color='gray.50'>{skill.skillName}</Text>
-                      </Flex>
+                            <Flex mt='4' align='center'>
+                              {!isWideVersion && (
+                                <Image  src={skill.icon} width={8}/>
+                              )}
+                              <Text ml='2' color='gray.50'>{skill.skillName}</Text>
+                            </Flex>
 
 
-                    </Flex>
-                  )
-                })}
-              </Box>
+                          </Flex>
+                    )})}
+                    </Box> 
+                ): (
+                  <Slider
+                    speed={500}
+                    slidesToShow={3}
+                    slidesToScroll= {1} 
+                    
+                    arrows={false}
+                    dotsClass=''
+                  >
+                    {skills.map((skill)=>{
+                      return (
+                        (
+                          <Flex display='flex!important' key={skill.id} align='center' direction='column'>
+                            <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                              <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
+                            </CircularProgress>
+      
+                            <Flex mt='4' justify='center'>
+                              <Text color='gray.50'>{skill.skillName}</Text>
+                            </Flex>
+                          </Flex>
+                      ))
+                    })}
+                  </Slider>
+                )}
           </Box>
 
-          <Box maxW={1190} w='100%'   margin='8rem auto 8rem' id="projects">
-              <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Projectos</Text>
-              <Text textAlign='center' fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Coisa que tenho construido ultimamente</Text>
+          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['2rem', '2rem', '2rem', '0']}  margin={[ '4rem 0 4rem', '8rem auto 8rem']} id="projects">
+              <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Projectos</Text>
+              <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem', '2rem']} color='gray.100'>Coisa que tenho construido ultimamente</Text>
 
               <Slider {...settings}>
                 {projects.map((project)=>{
@@ -123,8 +152,8 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
               </Slider>
           </Box>
 
-          <Box py='4rem' maxW={990} margin='0 auto' id="contact">
-            <Text as='h2' textAlign='center' mb='3rem' fontSize='3rem' color='gray.50'>Contacto</Text>
+          <Box py={['2rem','4rem']} px={['1rem', '2rem', '2rem', '0']}  maxW={[800, 800, 900, 1190]} margin={['0 1rem','0 auto']} id="contact">
+            <Text as='h2' textAlign='center' mb={['1.5rem','3rem']} fontSize={['2rem','3rem']} color='gray.50'>Contacto</Text>
 
             <ContactForm/>
           </Box>

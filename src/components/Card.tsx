@@ -17,7 +17,7 @@ interface CardProps {
 
 export function Card({ data }: CardProps) {
     return (
-        <ChakraCard maxW={370} h='30rem' bg='gray.700'>
+        <ChakraCard maxW={[370, 370, 320,370]} h='30rem' bg='gray.700'>
             <CardBody p='0' h='100%'>
                 <Image
                     src={data.image}
@@ -31,7 +31,7 @@ export function Card({ data }: CardProps) {
                         <Text noOfLines={1} color='gray.50' fontSize='1rem'>Stack: <Text as='span' color='gray.100'>{data.stack}.</Text>
                         </Text>
                     </Stack>
-                    <Flex align='center' mt='6' justify='space-between'>
+                    <Flex align='center' mt='6' justify='space-between' >
                         <Flex align='center'>
                             <Icon as={FiLink} color='white'/>
 

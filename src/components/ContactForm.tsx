@@ -16,16 +16,17 @@ export function ContactForm() {
     }
 
     return (
-        <Flex align='center' justify='space-between'>
-            <Text fontSize='1.75rem' maxW={500} color='gray.50'>Posso ajuda-lo com o seu problema? Mande-me uma mensagem</Text>
-            <Flex flex='1' as='form' onSubmit={handleSubmit(onSubmit)} flexDir='column'>
+        <Flex align='center' w={{md: '80%' }} margin={{md: '0 auto'}} flexDir={['column', 'column', 'column', 'row']} justify='space-between'>
+            <Text fontSize='1.5rem' mb={['2rem', '2rem', '2rem', '0']} maxW={500} color='gray.50'>Posso ajuda-lo com o seu problema? Mande-me uma mensagem</Text>
+            
+            <Flex flex='1' as='form' w={['100%', '100%', '100%', 'auto']} onSubmit={handleSubmit(onSubmit)} flexDir='column'>
                 <Stack w='100%' mb='4' spacing='4'>
-                    <Input color='gray.50' {...register('name')} focusBorderColor='pink.500' placeholder="Nome"/>
-                    <Input color='gray.50' {...register('email')} focusBorderColor='pink.500' placeholder="Email"/>
+                    <Input size='lg' color='gray.50' {...register('name')} focusBorderColor='pink.500' placeholder="Nome"/>
+                    <Input size='lg' color='gray.50' {...register('email')} focusBorderColor='pink.500' placeholder="Email"/>
                     <Textarea color='gray.50' {...register('message')} focusBorderColor='pink.500' placeholder="Messagem"/>
                 </Stack>
 
-                <Button isLoading={isSubmitting} colorScheme='pink' w='8rem' type="submit">Enviar</Button>
+                <Button isLoading={isSubmitting} colorScheme='pink' size='lg' w={['100%', '100%', '100%', '8rem']} type="submit">Enviar</Button>
             </Flex>
         </Flex>
     )
