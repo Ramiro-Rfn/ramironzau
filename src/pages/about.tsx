@@ -54,7 +54,7 @@ export default function About({ aboutMe, educations, workExperiences }: AboutPro
 
         <Box w='100%'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
-                <Box maxW={1190} w='100%'   margin={['3rem 0 0','6rem auto 0']} px={['1rem', '2rem', '2rem', 0]} id="about">
+                <Box maxW={1190} w='100%'   margin={['3rem 0 0','6rem auto 0']} px={['1rem', '2rem', '2rem', '2rem', '0']} id="about">
                     <Flex w='100%' flexDir={['column', 'column', 'column', 'row']}>
                         <Flex maxW={617} flexDir='column' >
                             <Text fontSize='2.5rem' color='gray.50' mb='4' >Sobre Me</Text>

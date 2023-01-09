@@ -67,7 +67,7 @@ interface AboutMeDocumentData {
      * Name field in *about me*
      *
      * - **Field Type**: Text
-     * - **Placeholder**: *None*
+     * - **Placeholder**: My full name
      * - **API ID Path**: about_me.name
      * - **Tab**: Main
      * - **Documentation**: https://prismic.io/docs/core-concepts/key-text

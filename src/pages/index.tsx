@@ -34,6 +34,8 @@ interface HomeProps {
   projects: Project[];
   skills: Skills[];
   aboutMe: {
+    name: string,
+    avatar: string,
     aboutme: string,
     socialmedia: {
       facebook: string,
@@ -63,12 +65,12 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
         <Header socialMedia={aboutMe.socialmedia}/>
 
         <Box w='100%'>
-          <Flex maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '0']} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
+          <Flex maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '2rem', 0]} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
             <Flex maxW={639} direction='column'>
               <Text as='h1' fontSize={['2.5rem', '2rem', '3rem', '3.5rem']} color='gray.50'>
                 Hi 👋,
                 <Text>My name is</Text>
-                <Text bgGradient='linear(to-r, #00C0FD, #E70FAA)' bgClip='text'>Ramiro Nzau</Text>
+                <Text bgGradient='linear(to-r, #00C0FD, #E70FAA)' bgClip='text'>{aboutMe.name}</Text>
               </Text>
 
 
@@ -80,7 +82,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
             {!isWideVersion && (
               <Flex >
                 <Flex w={[300, 200, 280,349]} h={[200, 200, 280,349]} p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
-                  <Image width='100%' height='100%' borderRadius='50%' src="images/ramiro.png" alt="" />
+                  <Image width='100%' height='100%' borderRadius='50%' src={aboutMe.avatar} alt="" />
                 </Flex>
               </Flex>
             )}
@@ -88,7 +90,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
           </Flex>
 
 
-          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '0']}  margin={['4rem 0 0','8rem auto 0']} id="skills">
+          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '2rem', 0]}  margin={['4rem 0 0','8rem auto 0']} id="skills">
               <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Skills</Text>
               <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
@@ -97,7 +99,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
                     {skills.map((skill)=>{
                       return (
                           <Flex key={skill.id} align='center' direction='column'>
-                            <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                            <CircularProgress size={ isWideVersion? '80px':'120px'}  value={skill.skillStatus} color='pink.500' >
                               <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
                             </CircularProgress>
 
@@ -125,7 +127,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
                       return (
                         (
                           <Flex display='flex!important' key={skill.id} align='center' direction='column'>
-                            <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                            <CircularProgress size={isWideVersion ? '80px':'120px'}  value={skill.skillStatus} color='pink.500' >
                               <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
                             </CircularProgress>
       
@@ -139,7 +141,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
                 )}
           </Box>
 
-          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['2rem', '2rem', '2rem', '0']}  margin={[ '4rem 0 4rem', '8rem auto 8rem']} id="projects">
+          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['2rem', '2rem', '2rem', '2rem', 0]}  margin={[ '4rem 0 4rem', '8rem auto 8rem']} id="projects">
               <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Projectos</Text>
               <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem', '2rem']} color='gray.100'>Coisa que tenho construido ultimamente</Text>
 
@@ -152,7 +154,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
               </Slider>
           </Box>
 
-          <Box py={['2rem','4rem']} px={['1rem', '2rem', '2rem', '0']}  maxW={[800, 800, 900, 1190]} margin={['0 1rem','0 auto']} id="contact">
+          <Box py={['2rem','4rem']} px={['1rem', '2rem', '2rem', '2rem', 0]}  maxW={[800, 800, 900, 1190]} margin={['0 1rem','0 auto']} id="contact">
             <Text as='h2' textAlign='center' mb={['1.5rem','3rem']} fontSize={['2rem','3rem']} color='gray.50'>Contacto</Text>
 
             <ContactForm/>
@@ -207,15 +209,15 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
     },
     phonenumber: aboutMeResult.data.phonenumber,
     whatsappnumber: aboutMeResult.data.whatsappnumber,
-    email: aboutMeResult.data.email
+    email: aboutMeResult.data.email,
+    name: aboutMeResult.data.name,
+    avatar: aboutMeResult.data.avatar.url
   }
-
-  console.log(aboutMe)
 
   return {
     props: {
-      projects,
-      skills,
+      projects: projects.filter((item, index)=> {if(index < 10) return item ;}),
+      skills: skills.filter((item, index)=> {if(index < 10) return item ;}),
       aboutMe
     },
   }

@@ -69,7 +69,7 @@
         "type": "Text",
         "config": {
           "label": "Name",
-          "placeholder": ""
+          "placeholder": "My full name"
         }
       },
       "avatar": {

@@ -57,7 +57,7 @@ export default function About({ aboutMe, skills }: AboutProps) {
                   {skills.map((skill)=>{
                     return (
                         <Flex key={skill.id} align='center' direction='column'>
-                          <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                          <CircularProgress size={isWideVersion ? '80px':'120px'}  value={skill.skillStatus} color='pink.500' >
                             <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
                           </CircularProgress>
 

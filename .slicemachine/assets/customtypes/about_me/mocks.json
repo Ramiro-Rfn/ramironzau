@@ -1,7 +1,7 @@
 {
   "aboutme": {
     "__TYPE__": "FieldContent",
-    "value": "beyond",
+    "value": "solve",
     "type": "Text"
   },
   "socialmedia": {
@@ -16,7 +16,7 @@
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
-                "url": "http://google.com"
+                "url": "https://prismic.io"
               }
             }
           ],
@@ -26,7 +26,7 @@
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
-                "url": "http://twitter.com"
+                "url": "https://slicemachine.dev"
               }
             }
           ],
@@ -36,7 +36,7 @@
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
-                "url": "https://slicemachine.dev"
+                "url": "http://google.com"
               }
             }
           ]
@@ -46,35 +46,35 @@
   },
   "phonenumber": {
     "__TYPE__": "FieldContent",
-    "value": "final",
+    "value": "drop",
     "type": "Text"
   },
   "whatsappnumber": {
     "__TYPE__": "FieldContent",
-    "value": "city",
+    "value": "clothes",
     "type": "Text"
   },
   "email": {
     "__TYPE__": "FieldContent",
-    "value": "stand",
+    "value": "spite",
     "type": "Text"
   },
   "name": {
     "__TYPE__": "FieldContent",
-    "value": "zipper",
+    "value": "other",
     "type": "Text"
   },
   "avatar": {
     "__TYPE__": "ImageContent",
     "origin": {
       "id": "main",
-      "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+      "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
       "width": 4000,
-      "height": 4000
+      "height": 6000
     },
-    "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+    "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
     "width": 4000,
-    "height": 4000,
+    "height": 6000,
     "edit": {
       "zoom": 1,
       "crop": {

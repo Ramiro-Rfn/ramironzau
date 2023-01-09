@@ -22,11 +22,9 @@ export function Header({ socialMedia }: HomeProps) {
         xl: false
     })
 
-    console.log(isWideVersion);
-
     return (
         <Flex w='100%' as='header'>
-            <Flex maxW={1190} align='center' px={['1rem', '1rem', '2rem', '2rem']} justify='space-between' w='100%' margin={['0 auto']} py='8'>
+            <Flex maxW={1190} align='center' px={['1rem', '1rem', '2rem', '2rem', '0']} justify='space-between' w='100%' margin={['0 auto']} py='8'>
                 <Link href='/'>
                     <ChakraLink 
                         bgGradient='linear(to-r, #00C0FD, #E70FAA)' 
@@ -88,7 +86,7 @@ export function Header({ socialMedia }: HomeProps) {
                     <Flex as='nav'>
                         <Navigation/>
 
-                        <HStack ml='8' display={{md: 'none'}}>
+                        <HStack ml='8' display={['none','none','none', 'flex']}>
                             <Flex align='center' justify='center' w='8' h='8' borderRadius={16} bg='gray.200'>
                                 <Link href={socialMedia.github}>
                                     <ChakraLink  display='flex' alignItems='center' justifyContent='center'>
