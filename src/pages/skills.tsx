@@ -1,4 +1,4 @@
-import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 
@@ -30,6 +30,14 @@ interface AboutProps {
 }
  
 export default function About({ aboutMe, skills }: AboutProps) {
+  const isWideVersion = useBreakpointValue({
+    base: true,
+    sm: true,
+    md: false,
+    lg: false,
+    xl: false
+  })
+
   
   return (
     <>
@@ -41,28 +49,28 @@ export default function About({ aboutMe, skills }: AboutProps) {
         <Box w='100%'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
                 
-            <Box maxW={1190} w='100%'   margin='8rem auto 0' id="skills">
-              <Text as='h2'  mb='1rem' fontSize='3rem' color='gray.50'>Skills</Text>
-              <Text fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
+            <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '0']}  margin={['4rem 0 0','8rem auto 0']} id="skills">
+              <Text as='h2' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Skills</Text>
+              <Text  fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
-              <Box display='grid' rowGap='3rem' gridTemplateColumns='1fr 1fr 1fr 1fr 1fr'>
-                
-                {skills.map((skill)=>{
-                  return (
-                    <Flex key={skill.id} align='center' direction='column'>
-                      <CircularProgress  size='120px'  value={skill.skillStatus} color='pink.500' >
-                        <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
-                      </CircularProgress>
+              <Box display='grid' rowGap='3rem' gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
+                  {skills.map((skill)=>{
+                    return (
+                        <Flex key={skill.id} align='center' direction='column'>
+                          <CircularProgress size={['80px','120px']}  value={skill.skillStatus} color='pink.500' >
+                            <CircularProgressLabel color='gray.100'>{skill.skillStatus}%</CircularProgressLabel>
+                          </CircularProgress>
 
-                      <Flex mt='4' align='center'>
-                        <Image  src={skill.icon} width={8}/>
-                        <Text ml='2' color='gray.50'>{skill.skillName}</Text>
-                      </Flex>
+                          <Flex mt='4' align='center'>
+                            {!isWideVersion && (
+                              <Image  src={skill.icon} width={8}/>
+                            )}
+                            <Text ml='2' color='gray.50'>{skill.skillName}</Text>
+                          </Flex>
 
 
-                    </Flex>
-                  )
-                })}
+                        </Flex>
+                  )})}
               </Box>
           </Box>
             </Flex>

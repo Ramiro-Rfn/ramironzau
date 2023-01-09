@@ -45,11 +45,11 @@ export default function Projects({ aboutMe, projects }: ProjectsProps) {
         <Box w='100%'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
                 
-                <Box maxW={1190} w='100%'   margin='8rem auto 8rem' id="projects">
-                    <Text as='h2' mb='1rem' fontSize='3rem' color='gray.50'>Projectos</Text>
-                    <Text  fontWeight='400' mb='6rem' fontSize='2rem' color='gray.100'>Coisa que tenho construido ultimamente</Text>
+                <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '2rem']}  margin={['4rem 0 0','8rem auto 0']} id="projects">
+                    <Text as='h2' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Projectos</Text>
+                    <Text fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Coisa que tenho construido ultimamente</Text>
 
-                    <Grid gap='2rem' gridTemplateColumns='1fr 1fr 1fr'>
+                    <Grid maxW={[800, 800, 700, 1190]} gap='2rem' margin='0 auto' gridTemplateColumns={['1fr', '1fr', '1fr 1fr','1fr 1fr 1fr']}>
                         {projects.map((project)=>{
                         return (
                             <Card key={project.id} data={project}/>
