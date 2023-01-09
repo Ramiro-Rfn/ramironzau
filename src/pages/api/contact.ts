@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             res.status(200).json({message: 'Email enviado com sucesso!'});
         } catch (error) {
             console.log(error);
-            res.status(404).json({message: 'Erro ao enviar a messagem!'})
+            res.status(402).json({message: 'Erro ao enviar a messagem!'})
         }
     }
 

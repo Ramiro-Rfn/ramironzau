@@ -56,7 +56,7 @@ export default function About({ aboutMe, educations, workExperiences }: AboutPro
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
                 <Box maxW={1190} w='100%'   margin={['3rem 0 0','6rem auto 0']} px={['1rem', '2rem', '2rem', '2rem', '0']} id="about">
                     <Flex w='100%' flexDir={['column', 'column', 'column', 'row']}>
-                        <Flex maxW={617} flexDir='column' >
+                        <Flex maxW={[500, 500, 500, 500, 617]} flexDir='column' >
                             <Text fontSize='2.5rem' color='gray.50' mb='4' >Sobre Me</Text>
                             <Text fontSize={['1rem','1.5rem']} color='gray.100' fontWeight='400'>
                                 {aboutMe.aboutme}
@@ -193,8 +193,6 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
     whatsappnumber: aboutMeResult.data.whatsappnumber,
     email: aboutMeResult.data.email
   }
-
-  console.log(workExperienceResponse)
 
   return {
     props: {

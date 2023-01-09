@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Navigation() {
     return (
-        <Stack spacing='8' direction={['column','row']} as='ul'>
+        <Stack spacing='8' direction={['column', 'column', 'row']} as='ul'>
             <Box as="li" >
                 <Link href='/'>
                     <ChakraLink  

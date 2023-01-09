@@ -16,8 +16,8 @@ export function ContactForm() {
     }
 
     return (
-        <Flex align='center' w={{md: '80%' }} margin={{md: '0 auto'}} flexDir={['column', 'column', 'column', 'row']} justify='space-between'>
-            <Text fontSize='1.5rem' mb={['2rem', '2rem', '2rem', '0']} maxW={500} color='gray.50'>Posso ajuda-lo com o seu problema? Mande-me uma mensagem</Text>
+        <Flex align='center' maxW={['100%', '90%', '80%', '80%' ]} margin={['0 auto', '0 auto']} flexDir={['column', 'column', 'column', 'row']} justify='space-between'>
+            <Text fontSize='1.5rem' mb={['2rem', '2rem', '2rem', '0']} maxW={[500, 500, 500, 400]} color='gray.50'>Posso ajuda-lo com o seu problema? Mande-me uma mensagem</Text>
             
             <Flex flex='1' as='form' w={['100%', '100%', '100%', 'auto']} onSubmit={handleSubmit(onSubmit)} flexDir='column'>
                 <Stack w='100%' mb='4' spacing='4'>

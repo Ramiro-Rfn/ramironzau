@@ -95,7 +95,7 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
               <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
                 {!isWideVersion?(
-                  <Box display='grid' rowGap='3rem' gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
+                  <Box display='grid' rowGap='3rem' gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
                     {skills.map((skill)=>{
                       return (
                           <Flex key={skill.id} align='center' direction='column'>
@@ -220,5 +220,7 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
       skills: skills.filter((item, index)=> {if(index < 10) return item ;}),
       aboutMe
     },
+    
+    revalidate: 60 * 60 * 24 // 24 horas,
   }
 }

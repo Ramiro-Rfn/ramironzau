@@ -49,11 +49,14 @@ export default function About({ aboutMe, skills }: AboutProps) {
         <Box w='100%'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
                 
-            <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '0']}  margin={['4rem 0 0','8rem auto 0']} id="skills">
+            <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '2rem', 0]}  margin={['4rem 0 0','8rem auto 0']} id="skills">
               <Text as='h2' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Skills</Text>
               <Text  fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
-              <Box display='grid' rowGap='3rem' gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
+              <Box 
+                display='grid' 
+                rowGap='3rem' 
+                gridTemplateColumns={['1fr 1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}> 
                   {skills.map((skill)=>{
                     return (
                         <Flex key={skill.id} align='center' direction='column'>
