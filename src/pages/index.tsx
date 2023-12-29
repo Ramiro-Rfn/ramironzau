@@ -245,7 +245,7 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   })
 
 
-  const educationResponse = await client.getAllByEveryTag(["education", "work_experience"]);
+  const educationResponse = await client.getAllByType("education");
   
   const educations = educationResponse?.map((data)=>{
     return {
