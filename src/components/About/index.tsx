@@ -1,10 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { GetStaticProps } from "next";
-import Head from "next/head";
 
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
-import { createClient } from "../services/prismic";
 
 type Education = {
     id: string;
@@ -34,24 +29,18 @@ interface AboutProps {
     phonenumber: string,
     whatsappnumber: string,
     email: string
+    avatar: string
   };
 
   educations: Education[];
   workExperiences: WorkExperience[]; 
 }
 
-export default function About({ aboutMe, educations, workExperiences }: AboutProps) {
-
-    console.log(educations)
-    console.log(workExperiences)
+export function About({ aboutMe, educations, workExperiences }: AboutProps) {
   
   return (
-    <>
-      <Head>Home | Ramiro Nzau </Head>
-      
+    <>      
       <Flex w='100%' direction='column'>
-        <Header socialMedia={aboutMe.socialmedia}/>
-
         <Box w='100%'>
             <Flex maxW={1190} align='center' justify='space-between' w='100%'  margin='0 auto 4rem' >
                 <Box maxW={1190} w='100%'   margin={['3rem 0 0','6rem auto 0']} px={['1rem', '2rem', '2rem', '2rem', '0']} id="about">
@@ -126,81 +115,7 @@ export default function About({ aboutMe, educations, workExperiences }: AboutPro
                 </Box>
             </Flex>
         </Box>    
-        <Footer/>
       </Flex>
-
     </>
   )
-}
-
-
-export const getStaticProps: GetStaticProps = async ({ previewData }) => {
-  const client = createClient({ previewData })
-
-  const workExperienceResponse = await client.getAllByType('work_experience');
-  
-  const workExperiences = workExperienceResponse?.map((data)=>{
-    return {
-      id: data.id,
-      role: data.data.role,
-      organization: data.data.organization,
-      
-      start: new Date(data.data.start).toLocaleDateString('pt-br', {
-        month: 'short',
-        year: 'numeric'
-      }) ,
-
-      end: new Date(data.data.end).toLocaleDateString('pt-br', {
-        month: 'short',
-        year: 'numeric'
-      }),
-
-      type: data.data.type
-    }
-  })
-
-
-  const educationResponse = await client.getAllByType('education');
-  
-  const educations = educationResponse?.map((data)=>{
-    return {
-      id: data.id,
-      course: data.data.course,
-      school: data.data.school,
-      
-      start: new Date(data.data.start).toLocaleDateString('pt-br', {
-        month: 'short',
-        year: 'numeric'
-      }) ,
-
-      end: new Date(data.data.end).toLocaleDateString('pt-br', {
-        month: 'short',
-        year: 'numeric'
-      })
-    }
-  })
-
-  const aboutMeResult = await client.getSingle('about_me');
-  
-  const aboutMe = {
-    aboutme: aboutMeResult.data.aboutme,
-    socialmedia: {
-      facebook: aboutMeResult.data.socialmedia[0].facebook.url,
-      linkedIn: aboutMeResult.data.socialmedia[0].linkedin.url,
-      github: aboutMeResult.data.socialmedia[0].github.url,
-    },
-    phonenumber: aboutMeResult.data.phonenumber,
-    whatsappnumber: aboutMeResult.data.whatsappnumber,
-    email: aboutMeResult.data.email
-  }
-
-  return {
-    props: {
-      aboutMe,
-      educations,
-      workExperiences
-    },
-
-    revalidate: 60 * 60 * 24 // 24 horas,
-  }
 }

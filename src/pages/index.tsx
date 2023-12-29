@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
+import { About } from "../components/About";
 import { Card } from "../components/Card";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
@@ -30,6 +31,23 @@ type Skills = {
   skillStatus: number
 }
 
+type Educations = {
+  id: string,
+  course: string,
+  school: string,
+  start: Date
+  end: Date
+}
+
+type WorkExperieces = {
+  id: string,
+  role: string,
+  organization: string,
+  start: Date
+  end: Date
+  type: string
+}
+
 interface HomeProps {
   projects: Project[];
   skills: Skills[];
@@ -45,10 +63,12 @@ interface HomeProps {
     phonenumber: string,
     whatsappnumber: string,
     email: string
-  }
+  },
+  educations: Educations[],
+  workExperiences: WorkExperieces[]
 }
 
-export default function Home({ aboutMe, projects, skills }: HomeProps) {
+export default function Home({ aboutMe, educations, workExperiences, projects, skills }: HomeProps) {
   const isWideVersion = useBreakpointValue({
     base: true,
     sm: true,
@@ -64,8 +84,8 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
       <Flex w='100%' direction='column'>
         <Header socialMedia={aboutMe.socialmedia}/>
 
-        <Box w='100%'>
-          <Flex maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '2rem', 0]} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
+        <Box as="main" w='100%'>
+          <Flex as="section" maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '2rem', 0]} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
             <Flex maxW={639} direction='column'>
               <Text as='h1' fontSize={['2.5rem', '2rem', '3rem', '3.5rem']} color='gray.50'>
                 Hi 👋,
@@ -90,7 +110,10 @@ export default function Home({ aboutMe, projects, skills }: HomeProps) {
           </Flex>
 
 
-          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '2rem', 0]}  margin={['4rem 0 0','8rem auto 0']} id="skills">
+          <About aboutMe={aboutMe} educations={educations} workExperiences={workExperiences}/>
+
+
+          <Box as="section" maxW={[800, 800, 900, 1190]} w='100%' px={['1rem', '2rem', '2rem', '2rem', 0]}  margin={['4rem 0 0','8rem auto 0']} id="skills">
               <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Skills</Text>
               <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem','2rem']} color='gray.100'>Tecnologias com as quais tenho trabalhado recentemete</Text>
 
@@ -198,7 +221,52 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
     }
   })
 
+
+  const workExperienceResponse = await client.getAllByType('work_experience');
+  
+  const workExperiences = workExperienceResponse?.map((data)=>{
+    return {
+      id: data.id,
+      role: data.data.role,
+      organization: data.data.organization,
+      
+      start: new Date(data.data.start).toLocaleDateString('pt-br', {
+        month: 'short',
+        year: 'numeric'
+      }) ,
+
+      end: new Date(data.data.end).toLocaleDateString('pt-br', {
+        month: 'short',
+        year: 'numeric'
+      }),
+
+      type: data.data.type
+    }
+  })
+
+
+  const educationResponse = await client.getAllByEveryTag(["education", "work_experience"]);
+  
+  const educations = educationResponse?.map((data)=>{
+    return {
+      id: data.id,
+      course: data.data.course,
+      school: data.data.school,
+      
+      start: new Date(data.data.start).toLocaleDateString('pt-br', {
+        month: 'short',
+        year: 'numeric'
+      }) ,
+
+      end: new Date(data.data.end).toLocaleDateString('pt-br', {
+        month: 'short',
+        year: 'numeric'
+      })
+    }
+  })
+
   const aboutMeResult = await client.getSingle('about_me');
+  
   
   const aboutMe = {
     aboutme: aboutMeResult.data.aboutme,
@@ -218,7 +286,9 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
     props: {
       projects: projects.filter((item, index)=> {if(index < 10) return item ;}),
       skills: skills.filter((item, index)=> {if(index < 10) return item ;}),
-      aboutMe
+      aboutMe,
+      educations,
+      workExperiences
     },
     
     revalidate: 60 * 60 * 24 // 24 horas,

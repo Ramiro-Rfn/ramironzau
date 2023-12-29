@@ -76,6 +76,6 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
         aboutMe
       },
 
-      revalidate: 60 * 60 * 24 // 24 horas,
+      revalidate: 60 // 24 horas,
     }
   }
