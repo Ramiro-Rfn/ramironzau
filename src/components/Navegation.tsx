@@ -27,7 +27,7 @@ export function Navigation() {
             </Box>
 
             <Box>
-                <Link href='/skills'>
+                <Link href='#skills'>
                     <ChakraLink 
                         color='gray.100' 
                         fontSize='1.25rem' 
