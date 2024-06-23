@@ -102,15 +102,6 @@ export function Header({ socialMedia }: HomeProps) {
                                     </ChakraLink>
                                 </Link>
                             </Flex>
-
-
-                            <Flex align='center' justify='center' w='8' h='8' borderRadius={16} bg='gray.200'>
-                                <Link href={socialMedia.facebook}>
-                                    <ChakraLink display='flex' alignItems='center' justifyContent='center'>
-                                        <Icon _hover={{color: 'pink.500'}} as={FiFacebook}/>
-                                    </ChakraLink>
-                                </Link>
-                            </Flex>
                         </HStack>
                     </Flex>
                 )}

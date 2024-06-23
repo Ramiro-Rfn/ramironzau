@@ -1,18 +1,16 @@
 import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import Slider from "react-slick";
 
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 import { About } from "../components/About";
-import { Card } from "../components/Card";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { ProjectsSection } from "../components/Projects";
 import { SkillsSection } from "../components/Skills";
-import { settings } from "../config/react-slick";
 import { createClient } from "../services/prismic";
 
 type Project = {
@@ -104,8 +102,12 @@ export default function Home({ aboutMe, educations, workExperiences, projects, s
 
             {!isWideVersion && (
               <Flex >
-                <Flex w={[300, 200, 280,349]} h={[200, 200, 280,349]} p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
-                  <Image width='100%' height='100%' borderRadius='50%' src={aboutMe.avatar} alt="" />
+                <Flex w={[300, 200, 280,349]} h={[200, 200, 280,349]} align="center" justify="center"  p='2' overflow='hidden' bgGradient='linear(to-r, #00C0FD, #E70FAA)' borderRadius='50%'>
+                  
+                  <Flex width="99%" height="99%" borderRadius="50%" position="relative" overflow="hidden" >
+                    <Image width='100%' height='100%'  src={aboutMe.avatar} alt="" />
+                  </Flex>
+                  
                 </Flex>
               </Flex>
             )}
@@ -118,18 +120,7 @@ export default function Home({ aboutMe, educations, workExperiences, projects, s
 
           <SkillsSection skills={skills}/>
 
-          <Box maxW={[800, 800, 900, 1190]} w='100%' px={['2rem', '2rem', '2rem', '2rem', 0]}  margin={[ '4rem 0 4rem', '8rem auto 8rem']} id="projects">
-              <Text as='h2' textAlign='center' mb='1rem' fontSize={['2rem','3rem']} color='gray.50'>Projectos</Text>
-              <Text textAlign='center' fontWeight='400' mb={['3rem','6rem']} fontSize={['1rem', '2rem']} color='gray.100'>Coisa que tenho construido ultimamente</Text>
-
-              <Slider {...settings}>
-                {projects.map((project)=>{
-                  return (
-                    <Card key={project.id} data={project}/>
-                  )
-                })}
-              </Slider>
-          </Box>
+          <ProjectsSection projects={projects}/>
 
           <Box py={['2rem','4rem']} px={['1rem', '2rem', '2rem', '2rem', 0]}  maxW={[800, 800, 900, 1190]} margin={['0 1rem','0 auto']} id="contact">
             <Text as='h2' textAlign='center' mb={['1.5rem','3rem']} fontSize={['2rem','3rem']} color='gray.50'>Contacto</Text>

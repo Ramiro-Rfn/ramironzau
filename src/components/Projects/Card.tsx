@@ -17,7 +17,7 @@ interface CardProps {
 
 export function Card({ data }: CardProps) {
     return (
-        <ChakraCard maxW={[370, 370, 320,370]} h='30rem' bg='gray.700'>
+        <ChakraCard h={['auto', 'auto','30rem']} bg='gray.700'>
             <CardBody p='0' h='100%'>
                 <Image
                     src={data.image}

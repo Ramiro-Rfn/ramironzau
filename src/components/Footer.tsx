@@ -1,5 +1,5 @@
 import { Flex, HStack, Icon, Link, Text } from "@chakra-ui/react";
-import { FiFacebook, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 
 export function Footer() {
     return (
@@ -16,13 +16,6 @@ export function Footer() {
                 <Flex align='center' justify='center' w='8' h='8' borderRadius={16} bg='gray.200'>
                     <Link display='flex' alignItems='center' justifyContent='center'>
                         <Icon _hover={{color: 'pink.500'}} as={FiLinkedin}/>
-                    </Link>
-                </Flex>
-
-
-                <Flex align='center' justify='center' w='8' h='8' borderRadius={16} bg='gray.200'>
-                    <Link display='flex' alignItems='center' justifyContent='center'>
-                        <Icon _hover={{color: 'pink.500'}} as={FiFacebook}/>
                     </Link>
                 </Flex>
             </HStack>

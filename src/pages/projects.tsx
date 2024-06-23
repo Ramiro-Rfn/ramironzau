@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { Card } from "../components/Card";
+import { Card } from "../components/Projects/Card";
 
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
@@ -51,9 +51,9 @@ export default function Projects({ aboutMe, projects }: ProjectsProps) {
 
                     <Grid maxW={[800, 800, 700, 1190]} gap='2rem' margin='0 auto' gridTemplateColumns={['1fr', '1fr', '1fr 1fr','1fr 1fr 1fr']}>
                         {projects.map((project)=>{
-                        return (
-                            <Card key={project.id} data={project}/>
-                        )
+                          return (
+                              <Card key={project.id} data={project}/>
+                          )
                         })}
                     </Grid>
                 </Box>
