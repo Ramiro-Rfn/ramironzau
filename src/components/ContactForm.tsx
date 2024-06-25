@@ -17,7 +17,7 @@ import * as yup from "yup";
 const schema = yup.object({
   name: yup.string().required("Nome obrigatório!"),
   email: yup.string().required("Email obrigatório").email("Email não valido!"),
-  message: yup.string().min(20, "Mínimo 20 caracteres!")
+  message: yup.string().min(20, "Mínimo 20 caracteres!").required()
 }).required();
 
 
@@ -33,7 +33,7 @@ export function ContactForm() {
         }
     });
 
-    function handleSubmitForm(data) {
+    function handleSubmitForm(data: FormInputs) {
         sendToFormspree(data)
 
         reset({name: "", email: "", message: ""}, {keepSubmitCount: false, keepIsSubmitted: false})
