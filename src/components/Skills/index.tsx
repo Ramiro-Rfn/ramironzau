@@ -48,7 +48,7 @@ export function SkillsSection( {skills}: SkillsSectionProps) {
                 >
                 {skills.map((skill)=>{
                     return (
-                        <SkillsCircle skill={skill}/>
+                        <SkillsCircle key={skill.id} skill={skill}/>
                     )
                 })}
                 </Slider>

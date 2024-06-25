@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 import { About } from "../components/About";
+import { BackgroundLines } from "../components/BackGroundLines";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
@@ -84,6 +85,8 @@ export default function Home({ aboutMe, educations, workExperiences, projects, s
       
       <Flex w='100%' direction='column'>
         <Header socialMedia={aboutMe.socialmedia}/>
+
+        <BackgroundLines />
 
         <Box as="main" w='100%'>
           <Flex as="section" maxW={[800, 800, 900, 1190]} align='center' px={['1rem', '2rem', '2rem', '2rem', 0]} justify='space-between' pt={['4rem','8rem']} w='100%'  margin={['0 auto']}>
